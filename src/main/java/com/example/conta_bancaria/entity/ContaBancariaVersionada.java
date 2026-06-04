@@ -3,13 +3,12 @@ package com.example.conta_bancaria.entity;
 
 import java.math.BigDecimal;
 
-import org.hibernate.annotations.DialectOverride.Version;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Version;
 
 
 @Entity
@@ -24,8 +23,7 @@ public class ContaBancariaVersionada {
     @Column(nullable = false, precision = 15, scale = 2)
     private BigDecimal saldo;
 
-    @Version(major = 0)
-    @Column(nullable = false)
+    @Version
     private Integer version;
 
     
