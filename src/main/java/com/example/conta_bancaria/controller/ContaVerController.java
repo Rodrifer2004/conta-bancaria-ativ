@@ -7,33 +7,33 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.conta_bancaria.dto.ValorDTO;
-import com.example.conta_bancaria.entity.ContaBancaria;
-import com.example.conta_bancaria.service.ContaBancariaService;
+import com.example.conta_bancaria.entity.ContaBancariaVersionada;
+import com.example.conta_bancaria.service.ContaVersionadaService;
 
-@RequestMapping("/contas")
+@RequestMapping("/contas-versionadas")
 @RestController
-public class ContaController 
+public class ContaVerController 
 {
-    private final ContaBancariaService contaBancariaService;
+    private final ContaVersionadaService contaVersionadaService;
 
-    public ContaController(ContaBancariaService contaBancariaService)
+    public ContaVerController(ContaVersionadaService contaVersionadaService)
     {
-        this.contaBancariaService = contaBancariaService;
+        this.contaVersionadaService = contaVersionadaService;
     }
 
     @PostMapping("/{id}/deposito")
-    public ContaBancaria depositar(
+    public ContaBancariaVersionada depositar(
         @PathVariable Long id,
         @RequestBody ValorDTO dto) 
         {
-            return contaBancariaService.depositar(id, dto.getValor());
+            return contaVersionadaService.depositar(id, dto.getValor());
         }
 
     @PostMapping("/{id}/saque")
-    public ContaBancaria sacar(
+    public ContaBancariaVersionada sacar(
          @PathVariable Long id,
          @RequestBody ValorDTO dto) 
         {
-            return contaBancariaService.sacar(id, dto.getValor());
+            return contaVersionadaService.sacar(id, dto.getValor());
         }
 }

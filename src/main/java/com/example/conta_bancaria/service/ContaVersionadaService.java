@@ -4,32 +4,32 @@ import java.math.BigDecimal;
 
 import org.springframework.stereotype.Service;
 
-import com.example.conta_bancaria.entity.ContaBancaria;
-import com.example.conta_bancaria.repository.ContaBancariaRepository;
+import com.example.conta_bancaria.entity.ContaBancariaVersionada;
+import com.example.conta_bancaria.repository.ContaVersionadaRepository;
 
 import jakarta.transaction.Transactional;
 
 @Service
-public class ContaBancariaService {
-    private final ContaBancariaRepository repository;
+public class ContaVersionadaService {
+    private final ContaVersionadaRepository repository;
 
-    public ContaBancariaService(ContaBancariaRepository repository){
+    public ContaVersionadaService(ContaVersionadaRepository repository){
         this.repository = repository;
     }
 
     
-    public ContaBancaria buscarConta(Long id){
+    public ContaBancariaVersionada buscarConta(Long id){
         return repository.findById(id)
         .orElseThrow(() ->
                 new RuntimeException("Conta não encontrada"));
     };
 
-    public ContaBancaria depositar(Long id, BigDecimal valor)
+    public ContaBancariaVersionada depositar(Long id, BigDecimal valor)
     {
-        ContaBancaria conta = repository.findById(id)
+        ContaBancariaVersionada contaVersionada = repository.findById(id)
             .orElseThrow(() -> new RuntimeException("Conta não encontrada"));
         
-        BigDecimal saldoAtual = conta.getSaldo();
+        BigDecimal saldoAtual = contaVersionada.getSaldo();
         /*try {
             Thread.sleep(500);
         } catch (InterruptedException e) {
@@ -37,17 +37,17 @@ public class ContaBancariaService {
         }*/
 
         BigDecimal novoSaldo = saldoAtual.add(valor);
-        conta.setSaldo(novoSaldo);
-        return repository.save(conta);
+        contaVersionada.setSaldo(novoSaldo);
+        return repository.save(contaVersionada);
     }
 
     @Transactional
-    public ContaBancaria sacar(Long id, BigDecimal valor)
+    public ContaBancariaVersionada sacar(Long id, BigDecimal valor)
     {
-        ContaBancaria conta = repository.findById(id)
+        ContaBancariaVersionada contaVersionada = repository.findById(id)
             .orElseThrow(() -> new RuntimeException("Conta não encontrada"));
 
-        BigDecimal saldoAtual = conta.getSaldo();
+        BigDecimal saldoAtual = contaVersionada.getSaldo();
         /*try {
             Thread.sleep(500);
         } catch (InterruptedException e) {
@@ -58,7 +58,7 @@ public class ContaBancariaService {
                 throw new RuntimeException("saldo insuficiente");
             }
         BigDecimal novoSaldo = saldoAtual.subtract(valor);
-        conta.setSaldo(novoSaldo);
-        return repository.save(conta);
+        contaVersionada.setSaldo(novoSaldo);
+        return repository.save(contaVersionada);
     }
 }
