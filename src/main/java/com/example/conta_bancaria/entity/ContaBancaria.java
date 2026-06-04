@@ -1,4 +1,4 @@
-package com.example.entity;
+package com.example.conta_bancaria.entity;
 
 import java.math.BigDecimal;
 

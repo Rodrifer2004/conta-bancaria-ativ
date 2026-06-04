@@ -7,8 +7,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
-import com.example.entity.ContaBancaria;
-import com.repository.ContaBancariaRepository;
+import com.example.conta_bancaria.entity.ContaBancaria;
+import com.example.conta_bancaria.repository.ContaBancariaRepository;
 
 @SpringBootApplication
 public class ContaBancariaApplication {
@@ -22,12 +22,13 @@ public class ContaBancariaApplication {
 	{
 		return args -> 
 		{
-			if(repository.count() == 0){
-			ContaBancaria conta = new ContaBancaria();
-			conta.setTitular("Rodrigo");
-			conta.setSaldo(new BigDecimal("1000.00"));
-			repository.save(conta);
-			}
+			if(repository.count() == 0)
+				{
+				ContaBancaria conta = new ContaBancaria();
+				conta.setTitular("Rodrigo");
+				conta.setSaldo(new BigDecimal("1000.00"));
+				repository.save(conta);
+				}
 		};
 	}
 }

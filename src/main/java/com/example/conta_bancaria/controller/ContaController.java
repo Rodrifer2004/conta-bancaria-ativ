@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.conta_bancaria.dto.ValorDTO;
+import com.example.conta_bancaria.entity.ContaBancaria;
 import com.example.conta_bancaria.service.ContaBancariaService;
-import com.example.entity.ContaBancaria;
 
 @RequestMapping("/contas")
 @RestController

@@ -4,8 +4,8 @@ import java.math.BigDecimal;
 
 import org.springframework.stereotype.Service;
 
-import com.example.entity.ContaBancaria;
-import com.repository.ContaBancariaRepository;
+import com.example.conta_bancaria.entity.ContaBancaria;
+import com.example.conta_bancaria.repository.ContaBancariaRepository;
 
 import jakarta.transaction.Transactional;
 
