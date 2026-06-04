@@ -8,7 +8,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
 import com.example.conta_bancaria.entity.ContaBancaria;
+import com.example.conta_bancaria.entity.ContaBancariaVersionada;
 import com.example.conta_bancaria.repository.ContaBancariaRepository;
+import com.example.conta_bancaria.repository.ContaVersionadaRepository;
 
 @SpringBootApplication
 public class ContaBancariaApplication {
@@ -28,6 +30,20 @@ public class ContaBancariaApplication {
 				conta.setTitular("Rodrigo");
 				conta.setSaldo(new BigDecimal("1000.00"));
 				repository.save(conta);
+				}
+		};
+	}
+	@Bean
+	CommandLineRunner init(ContaVersionadaRepository repository)
+	{
+		return args -> 
+		{
+			if(repository.count() == 0)
+				{
+				ContaBancariaVersionada contaVersionada = new ContaBancariaVersionada();
+				contaVersionada.setTitular("Andrew");
+				contaVersionada.setSaldo(new BigDecimal("1000.00"));
+				repository.save(contaVersionada);
 				}
 		};
 	}
