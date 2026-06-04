@@ -22,7 +22,7 @@ Implementações realizadas:
 
 **Parte 2 – Controle de Concorrência com Versionamento Otimista (Aluno B)**
 
-Responsável: Erick Andrew
+Responsável: Erick Andrew C
 
 Implementações realizadas:
 
