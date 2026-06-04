@@ -20,7 +20,7 @@ public class ContaBancariaApplication {
 	}
 
 	@Bean
-	CommandLineRunner init(ContaBancariaRepository repository)
+	CommandLineRunner init(ContaBancariaRepository repository, ContaVersionadaRepository repositoryVer)
 	{
 		return args -> 
 		{
@@ -31,19 +31,12 @@ public class ContaBancariaApplication {
 				conta.setSaldo(new BigDecimal("1000.00"));
 				repository.save(conta);
 				}
-		};
-	}
-	@Bean
-	CommandLineRunner init(ContaVersionadaRepository repository)
-	{
-		return args -> 
-		{
-			if(repository.count() == 0)
+			if(repositoryVer.count() == 0)
 				{
 				ContaBancariaVersionada contaVersionada = new ContaBancariaVersionada();
 				contaVersionada.setTitular("Andrew");
 				contaVersionada.setSaldo(new BigDecimal("1000.00"));
-				repository.save(contaVersionada);
+				repositoryVer.save(contaVersionada);
 				}
 		};
 	}
