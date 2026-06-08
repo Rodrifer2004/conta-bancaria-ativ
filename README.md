@@ -212,16 +212,24 @@ Body:
 
 # Testes de Concorrência
 
+Cenário do teste
+
+    Saldo inicial: R$ 1.000,00
+    Operações: 500 depósitos de R$ 2,00
+    Saldo final esperado: R$ 2.000,00
+
+
 Foi utilizado o Apache JMeter para simular múltiplas requisições simultâneas sobre a mesma conta bancária.
 
 Configuração utilizada:
 
 ```text
-Threads (Users): 20
+Threads (Users): 500
 Ramp-Up: 1 segundo
 Loop Count: 1
 ```
-<img width="281" height="134" alt="threads de users" src="https://github.com/user-attachments/assets/109b2ef6-e02f-40f9-adcd-9de0c1e726b0" />
+
+<img width="223" height="131" alt="threads de users2" src="https://github.com/user-attachments/assets/39a9bd86-0bc1-42d0-93b0-72327d75e05c" />
 
 
 O arquivo do cenário utilizado encontra-se na raiz do projeto:
@@ -252,9 +260,10 @@ Evidências:
 
 <img width="463" height="267" alt="Conta bancaria" src="https://github.com/user-attachments/assets/228e5374-1a5c-4d40-bca2-6a8a48ed88a2" />
 <br>
-<img width="454" height="465" alt="sem erros" src="https://github.com/user-attachments/assets/ec4e0f27-71b5-47bc-802b-2a149c0134d4" />
+<img width="448" height="541" alt="sem erros2" src="https://github.com/user-attachments/assets/6fb19632-4403-492f-a15b-128391416553" />
 <br>
-<img width="238" height="307" alt="resultado obtido" src="https://github.com/user-attachments/assets/722df1fa-6f67-405e-b01b-cd78ce282cfb" />
+<img width="230" height="299" alt="resultado obtido2" src="https://github.com/user-attachments/assets/221341ce-9b32-48f2-b331-278f58d7529c" />
+
 
 ---
 
@@ -266,8 +275,6 @@ Foi criada a entidade `ContaBancariaVersionada`, contendo o atributo:
 @Version
 private Integer version;
 ```
-
-Neste caso foi utilizado o `Thread.sleep()` para replicar o erro com mais facilidade.
 
 O Hibernate passou a controlar automaticamente a versão do registro.
 
@@ -293,9 +300,9 @@ Evidências:
 
 <img width="456" height="293" alt="Conta versionada" src="https://github.com/user-attachments/assets/2a06b72b-0077-41cd-9a74-db33ffd52ef8" />
 <br>
-<img width="458" height="406" alt="erros 409" src="https://github.com/user-attachments/assets/03cf6a0e-7092-459e-812e-5be0a2d24967" />
+<img width="448" height="543" alt="erros2 409" src="https://github.com/user-attachments/assets/5541518a-0c14-4dcb-be30-1e589b0c250c" />
 <br>
-<img width="325" height="294" alt="resultado versionado obtido" src="https://github.com/user-attachments/assets/9c113f92-95b7-4c1b-a481-942a9c202f55" />
+<img width="315" height="308" alt="resultado versionado obtido2" src="https://github.com/user-attachments/assets/49d40873-d172-492a-bfb8-6d28e7be4376" />
 
 ---
 
