@@ -30,12 +30,6 @@ public class ContaVersionadaService {
             .orElseThrow(() -> new RuntimeException("Conta não encontrada"));
         
         BigDecimal saldoAtual = contaVersionada.getSaldo();
-        try {
-            Thread.sleep(500);
-        } catch (InterruptedException e) {
-            Thread.currentThread().interrupt();
-        }
-
         BigDecimal novoSaldo = saldoAtual.add(valor);
         contaVersionada.setSaldo(novoSaldo);
         return repository.save(contaVersionada);
@@ -48,11 +42,6 @@ public class ContaVersionadaService {
             .orElseThrow(() -> new RuntimeException("Conta não encontrada"));
 
         BigDecimal saldoAtual = contaVersionada.getSaldo();
-        try {
-            Thread.sleep(500);
-        } catch (InterruptedException e) {
-            Thread.currentThread().interrupt();
-        }
         if(saldoAtual.compareTo(valor) < 0)
             {
                 throw new RuntimeException("saldo insuficiente");
